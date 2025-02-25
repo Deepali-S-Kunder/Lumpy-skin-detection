@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumpy Skin Disease Detection</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Style */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            background: #1e1e1e;
+            max-width: 500px;
+            margin: 20px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: #76c7c0; /* Soft teal */
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        /* File Input */
+        input[type="file"] {
+            display: block;
+            margin: 15px auto;
+            border: 1px solid #444;
+            background: #2c2c2c;
+            padding: 10px;
+            border-radius: 5px;
+            color: #f0f0f0;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        input[type="file"]::file-selector-button {
+            background-color: #76c7c0;
+            color: #121212;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            background-color: #5da6a0;
+        }
+
+        /* Button Style */
+        .btn {
+            background: #76c7c0;
+            color: #121212;
+            font-size: 1em;
+            font-weight: bold;
+            border: none;
+            padding: 12px 30px;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            background: #5da6a0;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Result Text */
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #f0f0f0;
+            background: #2c2c2c;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Image Preview */
+        .image-preview {
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #444;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease;
+        }
+
+        .image-preview:hover {
+            transform: scale(1.05);
+            border-color: #76c7c0;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <div class="container">
+        <h1>Lumpy Skin Disease Detection</h1>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit" class="btn">Upload and Predict</button>
+        </form>
+
+        {% if message %}
+            <p class="result">{{ message }}</p>
+        {% endif %}
+        {% if result %}
+            <p class="result"><strong>Prediction:</strong> {{ result }}</p>
+        {% endif %}
+        {% if image_path %}
+            <img src="{{ image_path }}" alt="Uploaded Image" class="image-preview" width="400px">
+        {% endif %}
+    </div>
+    </center>
+</body>
+</html>
